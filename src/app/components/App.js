@@ -5,7 +5,7 @@ class App extends React.Component {
       <div>
           <p>
             Created by the <a href="https://github.com/killix">
-              Killix
+              Killix.
             </a>
           </p>
       </div>

@@ -4,6 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "update-schema": "babel-node --stage 0 ./scripts/updateSchema.js",
+    "start": "babel-node --stage 0 ./src/server.js",
+    "build": "npm run update-schema && babel-node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack/webpack.config.babel.js",
+    "watch-server": "babel-node --stage 0 ./scripts/server.dev.js",
+    "watch-client": "babel-node --stage 0 ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack/webpack.config.babel.watch.js && babel-node --stage 0 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack/webpack.config.babel.watch.js",
+    "watch": "babel-node --stage 0 ./node_modules/concurrently/src/main.js --kill-others \"npm run watch-client\" \"npm run watch-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -33,7 +39,9 @@
     "webpack-dev-server": "^1.12.0"
   },
   "devDependencies": {
+    "concurrently": "^0.1.1",
     "extract-text-webpack-plugin": "^0.8.2",
+    "piping": "^0.3.0",
     "react-hot-loader": "^1.3.0"
   }
 }

@@ -8,15 +8,14 @@ const buildPath = "public/assets";
 const baseUrl = "http://localhost:8080";
 
 let config = {
-  entry: {
-    app: path.resolve('src/app/client.js')
-  },
+  entry: [path.resolve('src/app/client.js')],
   eslint: {
     configFile: '.eslintrc'
   },
   output: {
     path: path.resolve(`${buildPath}/${version}`),
-    filename: '[name].js',
+    filename: "app.js",
+		chunkFilename: "[name].[id].js",
     publicPath: `${baseUrl}/${version}/`
   },
   module: {
@@ -24,6 +23,7 @@ let config = {
       {
         test: /\.js$/,
         loader: 'babel',
+        exclude: /node_modules/,
         query: {
           stage: 0,
           plugins: ['./scripts/babelRelayPlugin']
